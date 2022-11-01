@@ -1,0 +1,59 @@
+package kodlama.io.devs.business.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlama.io.devs.business.abstracts.LanguageService;
+import kodlama.io.devs.dataAcces.abstracts.LanguageRepository;
+import kodlama.io.devs.entities.concretes.Language;
+
+@Service
+public class LanguageManager implements LanguageService {
+
+	LanguageRepository languageRepository;
+	List<Language> languages = new ArrayList<Language>(); 
+
+	@Autowired // yazmak zorunda değiliz default olarak geliyor artık.
+	public LanguageManager(LanguageRepository languageRepository) {
+
+		this.languageRepository = languageRepository;
+	}
+
+	@Override
+	public List<Language> getAll() {
+		return languageRepository.getAll();
+	}
+
+	@Override
+	public Language getId(int id) {
+		return languageRepository.getId(id);
+	}
+
+	@Override
+	public void add(Language language) throws Exception {
+		
+		for (Language languageInList : languages) {
+			if (languageInList.getName().equals(language.getName())) {
+				throw new Exception("Language name can not be the same");
+			}
+		}
+		languages.add(language);
+		languageRepository.add(language);
+	}
+
+	@Override
+	public void update(int id, Language language) {
+		languageRepository.update(id, language);
+
+	}
+
+	@Override
+	public void remove(int id) {
+		languageRepository.remove(id);
+
+	}
+
+}

@@ -1,0 +1,14 @@
+package kodlama.io.devs.dataAcces.abstracts;
+
+import java.util.List;
+
+import kodlama.io.devs.entities.abstracts.IEntity;
+
+public interface LanguageRepository {
+
+	List<IEntity> getAll();
+	void add(IEntity entity);
+	void update(IEntity entity);
+	void remove(IEntity entity);
+	
+}

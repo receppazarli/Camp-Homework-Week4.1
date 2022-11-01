@@ -1,0 +1,44 @@
+package kodlama.io.devs.webApi.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kodlama.io.devs.business.abstracts.LanguageService;
+import kodlama.io.devs.entities.concretes.Language;
+
+@RestController
+@RequestMapping("/api/languages")
+public class LanguagesContreller {
+
+	LanguageService languageService;
+
+	@Autowired
+	public LanguagesContreller(LanguageService languageService) {
+
+		this.languageService = languageService;
+	}
+
+	public List<Language> getAll() {
+		return languageService.getAll();
+	}
+
+	public Language getId(int id) {
+		return languageService.getId(id);
+	}
+
+	public void add(Language language) throws Exception {
+		languageService.add(language);
+	}
+
+	public void update(int id, Language language) {
+		languageService.update(id, language);
+	}
+
+	public void remove(int id) {
+		languageService.remove(id);
+	}
+
+}

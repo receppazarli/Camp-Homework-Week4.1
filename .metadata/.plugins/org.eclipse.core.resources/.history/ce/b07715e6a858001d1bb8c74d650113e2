@@ -1,0 +1,17 @@
+package kodlama.io.devs.dataAcces.abstracts;
+
+import java.util.List;
+
+public interface BaseRepository<T> {
+
+	List<T> getAll();
+
+	int getId(int id);
+	
+	void add(T entity);
+
+	void update(T entity);
+
+	void remove(T entity);
+
+}
